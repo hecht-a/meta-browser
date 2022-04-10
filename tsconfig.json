@@ -1,0 +1,40 @@
+{
+	"compilerOptions": {
+		"target": "ES2015",
+		"module": "es6",
+		"lib": ["ES2020"],
+		"removeComments": true,
+		"allowSyntheticDefaultImports": true,
+		"alwaysStrict": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"moduleResolution": "node",
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"resolveJsonModule": true,
+		"sourceMap": true,
+		"strict": true,
+		"strictBindCallApply": true,
+		"strictFunctionTypes": true,
+		"strictNullChecks": true,
+		"strictPropertyInitialization": true,
+		"outDir": "dist",
+		"baseUrl": ".",
+		"paths": {
+			"@/*": [
+				"./src/*"
+			],
+			"@utils/*": [
+				"./src/utils/*"
+			]
+		}
+	},
+	"include": [
+		"src"
+	],
+	"exclude": ["src/**/*.spec.ts"]
+
+}

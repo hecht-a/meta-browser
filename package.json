@@ -1,0 +1,35 @@
+{
+	"name": "api",
+	"type": "commonjs",
+	"main": "dist/server.js",
+	"scripts": {
+		"build": "tsc -p tsconfig.json",
+		"start": "node .",
+		"development": "rollup --config rollup.config.js --environment NODE_ENV:development --watch",
+		"production": "rollup --config rollup.config.js --environment NODE_ENV:production",
+		"serve": "node ."
+	},
+	"dependencies": {
+		"fastify": "^3.11.0",
+		"fastify-cors": "^5.2.0",
+		"fastify-static": "^4.6.1",
+		"got": "^12.0.3",
+		"jsdom": "^19.0.0",
+		"typescript": "^4.6.3"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.17.9",
+		"@babel/preset-env": "^7.16.11",
+		"@rollup/plugin-babel": "^5.3.1",
+		"@rollup/plugin-commonjs": "^21.0.3",
+		"@rollup/plugin-json": "^4.1.0",
+		"@rollup/plugin-node-resolve": "^13.1.3",
+		"@rollup/plugin-replace": "^4.0.0",
+		"@rollup/plugin-typescript": "^8.3.1",
+		"@types/jsdom": "^16.2.14",
+		"rollup": "^2.70.1",
+		"rollup-plugin-delete": "^2.0.0",
+		"rollup-plugin-terser": "^7.0.2",
+		"tslib": "^2.3.1"
+	}
+}
