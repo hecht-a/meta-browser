@@ -1,0 +1,28 @@
+:root {
+	--header-background: #161616;
+	--background: #1c1c1c;
+	--form-background: #333333;
+	--button-hover: #2950BF;
+}
+
+* {
+	box-sizing: border-box;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: var(--background);
+	width: 100vw;
+	height: 100vh;
+}
+
+#app {
+	display: flex;
+	height: 80%;
+	margin: auto;
+}
+
+@import "header";
+@import "result";

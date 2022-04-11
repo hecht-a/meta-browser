@@ -1,0 +1,69 @@
+:root {
+  --header-background: #161616;
+  --background: #1c1c1c;
+  --form-background: #333333;
+  --button-hover: #2950BF;
+}
+
+* {
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--background);
+  width: 100vw;
+  height: 100vh;
+}
+
+#app {
+  display: flex;
+  height: 80%;
+  margin: auto;
+}
+
+header {
+  display: flex;
+  width: 100%;
+  height: 6em;
+  padding: 0 6em;
+  background: var(--header-background);
+  align-items: center;
+}
+header form {
+  display: flex;
+  justify-content: flex-end;
+  background: var(--form-background);
+  border-radius: 8px;
+  height: 48px;
+  width: 600px;
+}
+header form input, header form button {
+  background: transparent;
+  border: none;
+  height: 100%;
+  outline: none;
+}
+header form button {
+  height: 48px;
+  width: 48px;
+  color: white;
+  cursor: pointer;
+}
+header form button:hover {
+  background: var(--button-hover);
+}
+header form input {
+  margin: 0 0 0 1em;
+  width: calc(100% - 48px);
+  font-size: 16px;
+  color: white;
+}
+
+.results {
+  width: 50%;
+}
+
+/*# sourceMappingURL=app.css.map */
