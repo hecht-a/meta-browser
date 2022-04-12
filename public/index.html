@@ -5,9 +5,41 @@
 	<meta name="viewport"
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
+	<title>Websearch</title>
+	<link rel="shortcut icon" href="/static/turtle-light-black.svg" type="image/x-icon">
+	<link rel="stylesheet" href="{{ style }}">
+	<script src="/js/middlewares/bangs.js" defer></script>
+	<script src="/js/middlewares/calculator.js" defer></script>
+	<script src="{{ script }}" defer></script>
+
+	<style>
+		body {
+			background-image: {{ background }};
+		}
+	</style>
 </head>
 <body>
-<h3>ok</h3>
+<header>
+	<a href="/" class="logo">
+		<svg>
+			<use xlink:href="/static/turtle-light.svg#logo"></use>
+		</svg>
+	</a>
+	<form class="search" action="">
+		<input class="search-input" type="text" name="q" autocomplete="off">
+		<button>
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" width="30" height="24" viewBox="0 0 24 24"
+				 stroke="currentColor" stroke-width="2">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+			</svg>
+		</button>
+	</form>
+	<div class="header-text"></div>
+</header>
+<div id="app">
+	<div id="google" class="results"></div>
+	<hr>
+	<div id="ddg" class="results"></div>
+</div>
 </body>
 </html>

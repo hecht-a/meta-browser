@@ -1,11 +1,10 @@
 import {JSDOM} from "jsdom";
 import got from "got";
 import {Link, SearchResult} from "@/types";
-import {GOOGLE_URL} from "@/constants";
-import {options} from "@/options";
+import {GOOGLE_URL, OPTIONS} from "@/constants";
 
 export async function parseGoogleQuery(q: string): Promise<SearchResult[]> {
-	const {body} = await got.get(`${GOOGLE_URL}${q}`, options)
+	const {body} = await got.get(`${GOOGLE_URL}${q}`, OPTIONS)
 	const dom = new JSDOM(body)
 	const items: NodeListOf<HTMLElement> = dom.window.document.querySelectorAll('div.g')
 	let results: SearchResult[] = []
@@ -13,7 +12,7 @@ export async function parseGoogleQuery(q: string): Promise<SearchResult[]> {
 
 	items.forEach((item: HTMLElement) => {
 		const link = item.querySelector("a")!.href
-		const title = item.querySelector("h3")!.textContent ?? ""
+		const title = item.querySelector("h3")?.textContent
 		const desc = item.querySelector(".VwiC3b")
 		const cite = item.querySelector("cite")
 
@@ -23,7 +22,7 @@ export async function parseGoogleQuery(q: string): Promise<SearchResult[]> {
 			if (!linkAlreadyListed) {
 				urls[link] = true
 				results.push({
-					title,
+					title: title ?? "",
 					link,
 					desc: desc ? desc.innerHTML : "",
 					domain: hostname,
@@ -89,11 +88,11 @@ function extractNestedLi(s: HTMLElement, r: SearchResult[]) {
 		const title = item.querySelector("h3")!
 		const link = (<HTMLAnchorElement>title.parentElement).href
 		const {hostname} = new URL(link)
-		const desc = item.querySelector("div[data-content-feature]")!.innerHTML
+		const desc = item.querySelector("div[data-content-feature]")
 		r.push({
 			title: title.textContent ?? "",
 			link,
-			desc,
+			desc: desc ? desc.innerHTML : "",
 			domain: hostname
 		})
 	})

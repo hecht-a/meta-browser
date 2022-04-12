@@ -1,5 +1,7 @@
 const filterBangs = {
-	"!r":  "site:reddit.com",
+	"/r":  "site:reddit.com",
+	"/gh": "site:github.com",
+	"/so": "site:stackovervlow.com"
 }
 
 export function parseFilterBangs(q: string) {

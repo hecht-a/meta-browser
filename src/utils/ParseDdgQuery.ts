@@ -1,12 +1,11 @@
 import {JSDOM} from "jsdom";
 import got from "got";
-import {DDG_URL} from "@/constants";
-import {options} from "@/options";
+import {DDG_URL, OPTIONS} from "@/constants";
 import {isBlocked} from "@utils/blocklist";
 import {SearchResult} from "@/types";
 
 export async function parseDdgQuery(q: string): Promise<SearchResult[]> {
-	const {body} = await got.get(`${DDG_URL}${q}`, options)
+	const {body} = await got.get(`${DDG_URL}${q}`, OPTIONS)
 	const dom = new JSDOM(body)
 
 	const items = dom.window.document.querySelectorAll(".result")

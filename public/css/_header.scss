@@ -1,0 +1,79 @@
+.has-results {
+	header {
+		.logo {
+			display: block;
+		}
+
+		width: 100%;
+		height: 6em;
+		padding: 0 6em;
+		background: var(--header-background);
+		align-items: center;
+		gap: 1.2em;
+	}
+}
+
+.has-focus {
+	form {
+		border: solid 1px #a9b1d6;
+		box-shadow: 0 0 0 4px #a9b1d63d;
+	}
+}
+
+header {
+	display: flex;
+	.logo {
+		display: none;
+		width: 48px;
+		height: 48px;
+		overflow: hidden;
+
+		svg {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	form {
+		display: flex;
+		justify-content: flex-end;
+		background: var(--form-background);
+		border-radius: 8px;
+		height: 48px;
+		width: 600px;
+		box-shadow: 0 2px 4px rgb(0 0 0 / 30%);
+		overflow: hidden;
+		transition: .3s;
+		box-sizing: border-box;
+
+		input, button {
+			background: transparent;
+			border: none;
+			height: 100%;
+			outline: none;
+		}
+
+		button {
+			height: 48px;
+			width: 48px;
+			color: white;
+			cursor: pointer;
+
+			&:hover {
+				background: var(--button-hover);
+			}
+		}
+
+		input {
+			margin: 0 0 0 1em;
+			width: calc(100% - 48px);
+			font-size: 16px;
+			color: white;
+		}
+	}
+
+	.header-text {
+		margin-left: 1rem;
+		font-weight: bold;
+	}
+}
