@@ -4,6 +4,22 @@ const searchInput = document.querySelector('.search-input')
 
 const middlewares = [bangs, calculator]
 
+customElements.define('theme-switcher', ThemeSwitcher)
+
+const {body} = document
+const theme = localStorage.getItem("theme")
+if(theme) {
+	const {classList} = body;
+	if (classList.contains('theme-dark') && theme === "light") {
+		classList.remove('theme-dark')
+		classList.add('theme-light')
+	} else if(classList.contains('theme-light') && theme === "dark") {
+		classList.add('theme-dark')
+		classList.remove('theme-light')
+		document.querySelector('#switch').checked = true
+	}
+}
+
 searchInput.addEventListener('focus', () => {
 	document.body.classList.add('has-focus')
 })

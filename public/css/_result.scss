@@ -34,17 +34,26 @@
 			}
 
 			span {
+				display: -webkit-box;
 				font-size: 1em;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 1;
 			}
 		}
 
 		.result_desc {
 			display: -webkit-box;
 			max-width: 600px;
-			color: #cccccc;
+			color: var(--font-desc);
 			overflow: hidden;
 			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 3;
+		}
+
+		span {
+			color: var(--font);
 		}
 	}
 }

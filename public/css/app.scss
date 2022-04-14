@@ -1,11 +1,18 @@
 :root {
-	--header-background: #161616;
-	--background: #1c1c1c;
-	--form-background: #333333;
+	--header-background: #ffffff;
+	--background: #ffffff;
+	--form-background: 'transparent';
 	--button-hover: #2950BF;
-	--title: #7aa2f7;
+	--button-focus: #3969EF;
+	--title: #1A0DAB;
 	--visited: #bb9af7;
-	--border: #303246;
+	--border: #d9d9d9;
+	--font: #222222;
+	--font-desc: #494949;
+	--form-font: #000000;
+	--turtle-color: #000000;
+	--search-button: #c0c0c0;
+	--search-button-focused: #ffffff;
 }
 
 * {
@@ -15,6 +22,22 @@
 	overflow-x: hidden;
 }
 
+.theme-dark {
+	--header-background: #161616;
+	--background: #1c1c1c;
+	--form-background: #333333;
+	--button-hover: #2950BF;
+	--title: #7aa2f7;
+	--visited: #bb9af7;
+	--border: #303246;
+	--font: #ffffff;
+	--font-desc: #cccccc;
+	--form-shadow: rgb(0 0 0 / 30%);
+	--form-font: #ffffff;
+	--turtle-color: #ffffff;
+	--search-button: #ffffff;
+}
+
 body {
 	display: flex;
 	justify-content: center;
@@ -22,10 +45,16 @@ body {
 	width: 100vw;
 	height: 100vh;
 	background: var(--background) center center / cover no-repeat fixed;
-	color: white;
+	color: var(--font);
 	font-family: 'SF Pro Text', Sans-Serif, sans-serif;
 	font-size: 14px;
 	line-height: 1.4;
+}
+
+hr {
+	width: 1px;
+	background-color: var(--border);
+	border: none;
 }
 
 a {
@@ -72,3 +101,4 @@ p {
 
 @import "header";
 @import "result";
+@import "switch";
