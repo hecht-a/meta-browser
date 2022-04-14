@@ -22,7 +22,7 @@
 	overflow-x: hidden;
 }
 
-.theme-dark {
+.theme-dark, body:not(.has-results) {
 	--header-background: #161616;
 	--background: #1c1c1c;
 	--form-background: #333333;
