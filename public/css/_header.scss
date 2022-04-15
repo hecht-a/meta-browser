@@ -1,17 +1,14 @@
 .has-results {
 	header {
 		border-bottom: 1px solid var(--border);
-
-		.logo {
-			display: block;
-		}
-
-		align-items: center;
 		width: 100%;
 		height: 6em;
 		padding: 0 6em;
 		background: var(--header-background);
-		gap: 1.2em;
+
+		.logo {
+			display: block;
+		}
 	}
 }
 
@@ -32,6 +29,8 @@
 
 header {
 	display: flex;
+	align-items: center;
+	gap: 1.2em;
 
 	.logo {
 		display: none;
