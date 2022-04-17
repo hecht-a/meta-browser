@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"target": "ES2015",
 		"module": "es6",
-		"lib": ["ES2020"],
+		"lib": ["ES2021"],
 		"removeComments": true,
 		"allowSyntheticDefaultImports": true,
 		"alwaysStrict": true,
@@ -24,11 +24,14 @@
 		"outDir": "dist",
 		"baseUrl": ".",
 		"paths": {
-			"@/*": [
-				"./src/*"
+			"@api/*": [
+				"./src/api/*"
 			],
-			"@utils/*": [
-				"./src/utils/*"
+			"@api/utils/*": [
+				"./src/api/utils/*"
+			],
+			"@types": [
+				"./src/types.ts"
 			]
 		}
 	},
