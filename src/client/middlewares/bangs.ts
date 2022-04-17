@@ -6,16 +6,12 @@ const bangsList = {
 	"!ytb":   "https://www.youtube.com/results?search_query=%s",
 	"!d":    "https://www.larousse.fr/dictionnaires/francais/%s",
 	"!g":    "https://www.google.com/search?q=%s",
+	"!ddg": "https://www.duckduckgo.com?q=%s",
 	"!gmap": "https://www.google.fr/maps?hl=fr&q=%s",
 	"!w": "https://fr.wikipedia.org/wiki/%s"
 }
 
-/**
- *
- * @param {string} q
- * @return boolean
- */
-function bangs(q) {
+export function bangs(q: string) {
 	if(!q.includes('!')) {
 		return false
 	}

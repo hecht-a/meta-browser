@@ -1,6 +1,10 @@
-const form = document.querySelector('.search')
+import {SearchResult} from "@types";
+import {bangs, calculator} from "./middlewares";
+import {ThemeSwitcher} from "./ThemeSwitcher";
+
+const form: HTMLFormElement = document.querySelector('.search')!
 const url = new URL(window.location.href)
-const searchInput = document.querySelector('.search-input')
+const searchInput: HTMLInputElement = document.querySelector('.search-input')!
 
 const middlewares = [bangs, calculator]
 
@@ -8,15 +12,16 @@ customElements.define('theme-switcher', ThemeSwitcher)
 
 const {body} = document
 const theme = localStorage.getItem("theme")
-if(theme) {
+if (theme) {
 	const {classList} = body;
 	if (classList.contains('theme-dark') && theme === "light") {
 		classList.remove('theme-dark')
 		classList.add('theme-light')
-	} else if(classList.contains('theme-light') && theme === "dark") {
+	} else if (classList.contains('theme-light') && theme === "dark") {
 		classList.add('theme-dark')
 		classList.remove('theme-light')
-		document.querySelector('#switch').checked = true
+		const switchButton: HTMLInputElement = document.querySelector('#switch')!
+		switchButton.checked = true
 	}
 }
 
@@ -30,23 +35,24 @@ searchInput.addEventListener('blur', () => {
 
 form.addEventListener('submit', (e) => {
 	e.preventDefault()
-	initHistory(new FormData(e.target).get('q'))
+	const q = new FormData(<HTMLFormElement>e.target).get('q')!.toString()
+	initHistory(q)
 })
 
 /**
  * @param {string} element
  * @return {(function({link: string, title: string, desc: string, domain: string}[]): void)|*}
  */
-const injectResult = (element) => (results) => {
+const injectResult = (element: string) => (results: SearchResult[]) => {
 	/** @type {HTMLDivElement} */
-	const container = document.querySelector(element)
+	const container = document.querySelector(element)!
 	container.innerHTML = results.map(templates).join('')
 }
 
 /**
  * @param {string} q
  */
-const initHistory = (q) => {
+const initHistory = (q: string) => {
 	if (search(q)) {
 		url.searchParams.set('q', q)
 		history.pushState(null, '', url.toString())
@@ -57,21 +63,21 @@ const initHistory = (q) => {
  * @param {string} q
  * @return {boolean}
  */
-function search(q) {
+function search(q: string) {
 	searchInput.value = q
 	if (q === "") {
 		return false
 	}
 
-	for(const middleware of middlewares) {
-		if(middleware(q)) {
+	for (const middleware of middlewares) {
+		if (middleware(q)) {
 			return false
 		}
 	}
 
 	document.title = `${q} - Recherche`
-	document.body.classList.add('has-results')
 	document.body.classList.add('is-loading')
+	document.body.classList.add('has-results')
 	Promise.any([
 		fetch(`/ddg?q=${q}`).then((response) => response.json()).then(injectResult('#ddg')),
 		fetch(`/google?q=${q}`).then((response) => response.json()).then(injectResult('#google'))
@@ -87,7 +93,7 @@ function search(q) {
  * @param {string} domain
  * @return {string}
  */
-const templates = ({link, title, desc, domain}) => `
+const templates = ({link, title, desc, domain}: SearchResult) => `
 	<div class="result">
 		<a href="${link}" class="result_title">${title}</a>
 		<div class="result_url">
