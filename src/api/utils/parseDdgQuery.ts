@@ -1,8 +1,8 @@
 import {JSDOM} from "jsdom";
 import got from "got";
-import {DDG_URL, OPTIONS} from "@/constants";
-import {isBlocked} from "@utils/blocklist";
-import {SearchResult} from "@/types";
+import {DDG_URL, OPTIONS} from "@api/constants";
+import {isBlocked} from "@api/utils/blocklist";
+import {SearchResult} from "@types";
 
 export async function parseDdgQuery(q: string): Promise<SearchResult[]> {
 	const {body} = await got.get(`${DDG_URL}${q}`, OPTIONS)
@@ -15,7 +15,7 @@ export async function parseDdgQuery(q: string): Promise<SearchResult[]> {
 		const link = title.href
 		const desc = item.querySelector(".result__snippet") ? item.querySelector(".result__snippet")!.innerHTML : ""
 		const {hostname} = new URL(link)
-		if(!item.classList.contains("result--add") && !isBlocked(hostname)) {
+		if (!item.classList.contains("result--add") && !isBlocked(hostname)) {
 			results.push({
 				title: title.textContent ?? "",
 				link,

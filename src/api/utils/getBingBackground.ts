@@ -1,5 +1,5 @@
 import got from "got";
-import {BING_URL, OPTIONS} from "@/constants";
+import {BING_URL, OPTIONS} from "@api/constants";
 import {JSDOM} from "jsdom";
 
 async function getBing(): Promise<Document> {

@@ -1,15 +1,11 @@
-const headerText = document.querySelector('.header-text')
+const headerText: HTMLHeadingElement = document.querySelector('.header-text')!
 const precision = Math.pow(10, 15)
 let hasCalculation = false
 
-/**
- * @param {string} q
- * @return {boolean}
- */
-function calculator(q) {
+export function calculator(q: string) {
 	if (q.match(/^[0-9][0-9\s\+\/\-\*\.]*$/)) {
 		const result = eval(q);
-		headerText.innerText =
+		headerText!.innerText =
 			" = " + Math.round(result * precision) / precision;
 		hasCalculation = true;
 		return true;

@@ -1,7 +1,7 @@
 import {JSDOM} from "jsdom";
 import got from "got";
-import {Link, SearchResult} from "@/types";
-import {GOOGLE_URL, OPTIONS} from "@/constants";
+import {Link, SearchResult} from "@types";
+import {GOOGLE_URL, OPTIONS} from "@api/constants";
 
 export async function parseGoogleQuery(q: string): Promise<SearchResult[]> {
 	const {body} = await got.get(`${GOOGLE_URL}${q}`, OPTIONS)
