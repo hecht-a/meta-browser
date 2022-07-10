@@ -1,6 +1,7 @@
 import {SearchResult} from "@types";
 import {bangs, calculator} from "./middlewares";
 import {ThemeSwitcher} from "./ThemeSwitcher";
+import {encodeEntities} from "./helpers/encodeEntities";
 
 const form: HTMLFormElement = document.querySelector('.search')!
 const url = new URL(window.location.href)
@@ -93,14 +94,14 @@ function search(q: string) {
  * @param {string} domain
  * @return {string}
  */
-const templates = ({link, title, desc, domain}: SearchResult) => `
+const templates = ({link, title, desc, domain}: SearchResult): string => `
 	<div class="result">
-		<a href="${link}" class="result_title">${title}</a>
+		<a href="${encodeEntities(link)}" class="result_title">${encodeEntities(title)}</a>
 		<div class="result_url">
 			<img src="https://external-content.duckduckgo.com/ip3/${domain}.ico" alt="">
-			<span>${link}</span>
+			<span>${encodeEntities(link)}</span>
 		</div>
-		<p class="result_desc">${desc}</p>
+		<p class="result_desc">${encodeEntities(desc)}</p>
 	</div>
 `
 
