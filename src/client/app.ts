@@ -1,5 +1,5 @@
 import {SearchResult} from "@types";
-import {bangs, calculator} from "./middlewares";
+import {bangs, calculator, capitalize} from "./middlewares";
 import {ThemeSwitcher} from "./ThemeSwitcher";
 import {encodeEntities} from "./helpers/encodeEntities";
 
@@ -7,7 +7,7 @@ const form: HTMLFormElement = document.querySelector('.search')!
 const url = new URL(window.location.href)
 const searchInput: HTMLInputElement = document.querySelector('.search-input')!
 
-const middlewares = [bangs, calculator]
+const middlewares = [bangs, calculator, capitalize]
 
 customElements.define('theme-switcher', ThemeSwitcher)
 
