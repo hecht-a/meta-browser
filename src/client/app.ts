@@ -101,7 +101,7 @@ const templates = ({link, title, desc, domain}: SearchResult): string => `
 			<img src="https://external-content.duckduckgo.com/ip3/${domain}.ico" alt="">
 			<span>${encodeEntities(link)}</span>
 		</div>
-		<p class="result_desc">${encodeEntities(desc)}</p>
+		<p class="result_desc">${desc}</p>
 	</div>
 `
 
