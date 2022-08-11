@@ -4,12 +4,13 @@
 	"main": "dist/api/server.js",
 	"scripts": {
 		"start": "node .",
-		"build:scss": "sass public/css/ public/css --watch",
+		"watch:scss": "sass public/css/ public/css --watch",
+		"build:scss": "sass public/css/ public/css",
 		"development": "rollup --config rollup.config.js --environment NODE_ENV:development --watch",
 		"production": "rollup --config rollup.config.js --environment NODE_ENV:production",
-		"dev": "concurrently 'npm:development' 'npm:build:scss' 'npm:start'",
-		"prod": "concurrently 'npm:production' 'npm:build:scss' 'npm:start'",
-		"build": "sass public/css/ public/css && npm run production"
+		"build": "concurrently 'npm:build:scss' 'npm:production'",
+		"dev": "concurrently 'npm:development' 'npm:watch:scss' 'npm:start'",
+		"prod": "concurrently 'npm:build' 'npm:start'"
 	},
 	"dependencies": {
 		"fastify": "^3.11.0",
