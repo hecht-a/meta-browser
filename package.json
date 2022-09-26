@@ -9,8 +9,8 @@
 		"development": "rollup --config rollup.config.js --environment NODE_ENV:development --watch",
 		"production": "rollup --config rollup.config.js --environment NODE_ENV:production",
 		"build": "concurrently 'npm:build:scss' 'npm:production'",
-		"dev": "concurrently 'npm:development' 'npm:watch:scss' 'npm:start'",
-		"prod": "concurrently 'npm:build' 'npm:start'"
+		"dev": "NODE_ENV=development concurrently 'npm:development' 'npm:watch:scss' 'npm:start'",
+		"prod": "NODE_ENV=production concurrently 'npm:build' 'npm:start'"
 	},
 	"dependencies": {
 		"dotenv": "^16.0.2",
