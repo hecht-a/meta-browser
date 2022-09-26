@@ -1,15 +1,16 @@
 import {SearchResult} from "@types";
 import {bangs, calculator, capitalize} from "./middlewares";
-import {ThemeSwitcher} from "./ThemeSwitcher";
 import {encodeEntities} from "./helpers/encodeEntities";
+import {SettingsPane, ThemeSwitcher} from './CustomElements'
 
 const form: HTMLFormElement = document.querySelector('.search')!
 const url = new URL(window.location.href)
 const searchInput: HTMLInputElement = document.querySelector('.search-input')!
 
-const middlewares = [bangs, calculator, capitalize]
+window.customElements.define('theme-switcher', ThemeSwitcher)
+window.customElements.define('settings-pane', SettingsPane)
 
-customElements.define('theme-switcher', ThemeSwitcher)
+const middlewares = [bangs, calculator, capitalize]
 
 const {body} = document
 const theme = localStorage.getItem("theme")

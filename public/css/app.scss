@@ -49,6 +49,7 @@ body {
 	font-family: 'SF Pro Text', Sans-Serif, sans-serif;
 	font-size: 14px;
 	line-height: 1.4;
+	position: relative;
 }
 
 hr {
@@ -102,3 +103,4 @@ p {
 @import "header";
 @import "result";
 @import "switch";
+@import "settings-pane";

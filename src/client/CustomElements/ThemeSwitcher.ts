@@ -13,5 +13,3 @@ export class ThemeSwitcher extends HTMLElement {
 		})
 	}
 }
-
-
