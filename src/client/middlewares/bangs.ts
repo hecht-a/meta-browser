@@ -8,7 +8,8 @@ const bangsList = {
 	"!g":    "https://www.google.com/search?q=%s",
 	"!ddg": "https://www.duckduckgo.com?q=%s",
 	"!gmap": "https://www.google.fr/maps?hl=fr&q=%s",
-	"!w": "https://fr.wikipedia.org/wiki/%s"
+	"!w": "https://fr.wikipedia.org/wiki/%s",
+	"!gr": "https://grafikart.fr/recherche?q=%s"
 }
 
 export function bangs(q: string) {
