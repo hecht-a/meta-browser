@@ -9,10 +9,11 @@
 		"development": "rollup --config rollup.config.js --environment NODE_ENV:development --watch",
 		"production": "rollup --config rollup.config.js --environment NODE_ENV:production",
 		"build": "concurrently 'npm:build:scss' 'npm:production'",
-		"dev": "concurrently 'npm:development' 'npm:watch:scss' 'npm:start'",
-		"prod": "concurrently 'npm:build' 'npm:start'"
+		"dev": "NODE_ENV=development concurrently 'npm:development' 'npm:watch:scss' 'npm:start'",
+		"prod": "NODE_ENV=production concurrently 'npm:build' 'npm:start'"
 	},
 	"dependencies": {
+		"dotenv": "^16.0.2",
 		"fastify": "^3.11.0",
 		"fastify-cli": "^2.15.0",
 		"fastify-cors": "^5.2.0",
@@ -23,6 +24,7 @@
 		"typescript": "^4.6.3"
 	},
 	"devDependencies": {
+		"@poppinss/cliui": "^3.0.2",
 		"@rollup/plugin-commonjs": "^21.0.3",
 		"@rollup/plugin-json": "^4.1.0",
 		"@rollup/plugin-node-resolve": "^13.1.3",

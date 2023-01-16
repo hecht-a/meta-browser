@@ -30,7 +30,7 @@ const config = {
 		})
 	],
 
-	external: [...Object.keys(dependencies), "stream"],
+	external: [...Object.keys(dependencies), "stream", 'node:fs/promises', 'node:path'],
 }
 
 export default [

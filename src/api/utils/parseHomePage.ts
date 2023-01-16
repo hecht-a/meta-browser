@@ -1,4 +1,4 @@
-import * as fs from "fs/promises";
+import * as fs from "node:fs/promises";
 import * as path from "path";
 import {getBingBackground} from "@api/utils/getBingBackground";
 

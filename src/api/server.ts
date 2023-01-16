@@ -1,11 +1,15 @@
 import createFastifyServer, {FastifyReply, FastifyRequest} from "fastify";
 import Cors from "fastify-cors";
 import Static from "fastify-static"
-import * as path from "path";
+import * as path from "node:path";
 import {RouteGenericInterface} from "fastify/types/route";
-import fs from "fs/promises";
+import fs from "node:fs/promises";
 import {ROUTE_OPTIONS} from "@api/constants";
 import {parseDdgQuery, parseGoogleQuery, parseHomePage, serveWithParser} from "@api/utils";
+import * as dotenv from 'dotenv'
+import {logger, sticker} from '@poppinss/cliui'
+
+dotenv.config()
 
 const fastify = createFastifyServer({
 	logger: true,
@@ -39,8 +43,18 @@ fastify.get("/js/:file", async (request: FastifyRequest<{ Params: { folder: stri
 	return reply.type('text/javascript').send(file)
 })
 
+const {env} = process
+const port = env.NODE_ENV === 'production' ? env.PORT_PROD : env.PORT_DEV
+
 try {
-	fastify.listen(5934, '0.0.0.0');
+	fastify.listen(port!, '0.0.0.0').then((address) => {
+		sticker()
+			.add('Started server')
+			.add('')
+			.add(`Environment: ${logger.colors.cyan(env.NODE_ENV!)}`)
+			.add(`Local address: ${logger.colors.cyan(address)}`)
+			.render()
+	})
 } catch (error) {
 	fastify.log.error(error);
 	process.exit(1);
