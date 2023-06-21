@@ -4,7 +4,7 @@ import {Link, SearchResult} from "@types";
 import {GOOGLE_URL, OPTIONS} from "@api/constants";
 
 export async function parseGoogleQuery(q: string): Promise<SearchResult[]> {
-	const {body} = await got.get(`${GOOGLE_URL}${q}`, OPTIONS)
+	const {body} = await got(`${GOOGLE_URL}${q}`, OPTIONS)
 	const dom = new JSDOM(body)
 	const items: NodeListOf<HTMLElement> = dom.window.document.querySelectorAll('div.g')
 	let results: SearchResult[] = []

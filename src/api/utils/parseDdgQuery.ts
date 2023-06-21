@@ -5,7 +5,7 @@ import {isBlocked} from "@api/utils/blocklist";
 import {SearchResult} from "@types";
 
 export async function parseDdgQuery(q: string): Promise<SearchResult[]> {
-	const {body} = await got.get(`${DDG_URL}${q}`, OPTIONS)
+	const {body} = await got(`${DDG_URL}${q}`, OPTIONS)
 	const dom = new JSDOM(body)
 
 	const items = dom.window.document.querySelectorAll(".result")
