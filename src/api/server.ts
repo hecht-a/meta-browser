@@ -4,6 +4,7 @@ import Static from "fastify-static"
 import * as path from "node:path";
 import {RouteGenericInterface} from "fastify/types/route";
 import fs from "node:fs/promises";
+import fss from "node:fs";
 import {ROUTE_OPTIONS} from "@api/constants";
 import {parseDdgQuery, parseGoogleQuery, parseHomePage, serveWithParser} from "@api/utils";
 import * as dotenv from 'dotenv'
@@ -11,9 +12,32 @@ import {logger, sticker} from '@poppinss/cliui'
 
 dotenv.config()
 
-const fastify = createFastifyServer({
-	logger: true,
-});
+const {env} = process
+
+let fastifyOptions: {
+	logger: boolean,
+	http2?: boolean,
+	https?: {
+		allowHTTP1: boolean,
+		key: Buffer,
+		cert: Buffer
+	}
+} = {
+	logger: true
+}
+if (env.HTTPS) {
+	fastifyOptions = {
+		...fastifyOptions,
+		http2: true,
+		https: {
+			allowHTTP1: true, // fallback support for HTTP1
+			key: fss.readFileSync(path.join(__dirname, "..", "..", "https", "fastify.key")),
+			cert: fss.readFileSync(path.join(__dirname, "..", "..", "https", "fastify.cert")),
+		},
+	}
+}
+
+const fastify = createFastifyServer(fastifyOptions);
 
 fastify.register(Cors, {
 	origin: "*"
@@ -43,7 +67,6 @@ fastify.get("/js/:file", async (request: FastifyRequest<{ Params: { folder: stri
 	return reply.type('text/javascript').send(file)
 })
 
-const {env} = process
 const port = env.NODE_ENV === 'production' ? env.PORT_PROD : env.PORT_DEV
 
 try {

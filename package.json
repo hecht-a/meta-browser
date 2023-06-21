@@ -10,7 +10,8 @@
 		"production": "rollup --config rollup.config.js --environment NODE_ENV:production",
 		"build": "concurrently 'npm:build:scss' 'npm:production'",
 		"dev": "NODE_ENV=development concurrently 'npm:development' 'npm:watch:scss' 'npm:start'",
-		"prod": "NODE_ENV=production concurrently 'npm:build' 'npm:start'"
+		"prod": "NODE_ENV=production concurrently 'npm:build' 'npm:start'",
+		"cert": "mkcert -install -cert-file ./https/fastify.cert -key-file ./https/fastify.key localhost"
 	},
 	"dependencies": {
 		"dotenv": "^16.0.2",
