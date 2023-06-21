@@ -1,8 +1,7 @@
-import createFastifyServer, {FastifyReply, FastifyRequest} from "fastify";
+import createFastifyServer from "fastify";
 import Cors from "fastify-cors";
 import Static from "fastify-static"
 import * as path from "node:path";
-import {RouteGenericInterface} from "fastify/types/route";
 import fs from "node:fs/promises";
 import fss from "node:fs";
 import {ROUTE_OPTIONS} from "@api/constants";
@@ -48,7 +47,7 @@ fastify.register(Static, {
 	prefix: '/public/',
 })
 
-fastify.get("/", ROUTE_OPTIONS, async (request: FastifyRequest<RouteGenericInterface & { QueryString: { q: string } }>, reply: FastifyReply) => {
+fastify.get("/", ROUTE_OPTIONS, async (request, reply) => {
 	return reply.type('text/html').send(await parseHomePage())
 })
 
@@ -56,12 +55,12 @@ fastify.get("/google", ROUTE_OPTIONS, serveWithParser(parseGoogleQuery));
 
 fastify.get("/ddg", ROUTE_OPTIONS, serveWithParser(parseDdgQuery));
 
-fastify.get("/:folder/:file", async (request: FastifyRequest<{ Params: { folder: string, file: string } }>, reply) => {
+fastify.get<{Params: { folder: string, file: string }}>("/:folder/:file", async (request, reply) => {
 	const {params} = request
 	return reply.sendFile(`${params.folder}/${params.file}`)
 })
 
-fastify.get("/js/:file", async (request: FastifyRequest<{ Params: { folder: string, file: string } }>, reply) => {
+fastify.get<{Params: { folder: string, file: string }}>("/js/:file", async (request, reply) => {
 	const {params} = request
 	const file = await fs.readFile(path.resolve(path.dirname(''), `dist/js/${params.file}`), {encoding: 'utf-8'})
 	return reply.type('text/javascript').send(file)
