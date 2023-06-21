@@ -24,7 +24,7 @@ let fastifyOptions: {
 } = {
 	logger: true
 }
-if (env.HTTPS) {
+if (env.HTTPS === '1') {
 	fastifyOptions = {
 		...fastifyOptions,
 		http2: true,
